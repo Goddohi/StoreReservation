@@ -2,30 +2,44 @@ package com.dohi.StoreReservation.Entity;
 
 import com.dohi.StoreReservation.Entity.Enum.UserStatus;
 import com.dohi.StoreReservation.Entity.Enum.UserType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
+import javax.lang.model.element.Name;
+import java.time.LocalDateTime;
+
+@Entity(name = "USER")
+@Getter
+@Setter
 public class UserEntity {
 
     @Id
-    private String Id;
+    @Column(name = "id")
+    private String id;
 
-    private String Name;
+    @Column(name = "name")
+    private String name;
 
-    private String PhoneNM; //핸드폰 번호
-    private String Password;
+    @Column(name = "phone_number")
+    private String phoneNumber; // 핸드폰 번호
+
+    @Column(name = "password")
+    private String password;
 
     @Enumerated(EnumType.STRING)
-    private UserType Type;
-
+    @Column(name = "type")
+    private UserType type;
 
     @Enumerated(EnumType.STRING)
-    private UserStatus status;  // 회원 상태 (예: 활성, 탈퇴 등)
+    @Column(name = "status")
+    private UserStatus status; // 회원 상태 (예: 활성, 탈퇴 등)
 
-    private String createdDate;
+    @Column(name = "shop_id")
+    private Long shopId;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate; // 등록 날짜 및 시간
 }
 
 
