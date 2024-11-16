@@ -12,7 +12,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    // 사용자 인증
+    /************************************************************************************
+     * 함  수  명      : getUser
+     * 내      용      : 유저아이디 기준으로 반환
+     * 설      명      :
+     ************************************************************************************/
+    public UserEntity getUser(String user_id) {
+        return userRepository.findById(user_id).orElse(null);
+    }
+
+    /************************************************************************************
+     * 함  수  명      : authenticate
+     * 내      용      : 사용자 인증
+     * 설      명      :
+     ************************************************************************************/
     public UserEntity authenticate(String user_id, String password) {
         Optional<UserEntity> user = userRepository.findById(user_id);
 
@@ -22,7 +35,11 @@ public class UserService {
         return null;
     }
 
-    // 회원가입
+    /************************************************************************************
+     * 함  수  명      : register
+     * 내      용      : 회원가입
+     * 설      명      :
+     ************************************************************************************/
     public boolean register(UserEntity user) {
         // 사용자 중복 확인
         if (userRepository.findById(user.getId()).isPresent()) {

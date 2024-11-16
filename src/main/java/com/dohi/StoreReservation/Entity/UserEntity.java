@@ -21,7 +21,8 @@ public class UserEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "phone_number")
+
+    @Column(name = "phone_number", unique = true)
     private String phoneNumber; // 핸드폰 번호
 
     @Column(name = "password")
